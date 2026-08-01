@@ -118,7 +118,9 @@ static block_header_t *extend_heap(size_t total_size) {
         heap_start = block;
     }
 
-    return coalesce(block);
+    block = coalesce(block);
+    insert_free(block);
+    return block;
 }
 
 static void place(block_header_t *block, size_t total_size) {
